@@ -26,11 +26,10 @@ if (!isset($_GET['id']))
         <title></title>
     </head>
     <body>
-        <a href="<?php echo vFIDO_URL;?>?mode=list">Назад, к списку конференций.</a>
+        <?php $msg=areasGetLastMessagesFromThread($_GET['id']); ?>
+        <a href="<?php echo vFIDO_URL;?>?mode=list&area=<?php echo $msg[0]['area']; ?>">Назад, к списку конференций.</a>
 		<h2 class="header">Список сообщений</h2>
-                <?php
-
-                    $msg=areasGetLastMessagesFromThread($_GET['id']);
+                <?php                    
                     foreach ($msg as $m)
                     {
                         if ($m['level']==0)

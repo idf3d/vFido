@@ -19,14 +19,6 @@ if (!defined('vFIDO_RUN'))
         <link type="text/css" href="css/main.css" rel="stylesheet" />
 	<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script>
-        <script type="text/javascript">
-	$(function(){
-
-				// Accordion
-				$("#accordion").accordion({ header: "h3",active: false });
-
-        });
-        </script>
         <style type="text/css">
             #accordion {
                 height:400px;
@@ -40,6 +32,7 @@ if (!defined('vFIDO_RUN'))
 		<div id="accordion">
                     <?php
                     $t=areasGetList();
+                    $activeArea='false';
                     foreach ($t as $k=>$v)
                     {
                     ?>
@@ -54,6 +47,8 @@ if (!defined('vFIDO_RUN'))
                                         $thr=areasGetLastThreads($v['area'],10);
                                         foreach ($thr as $thrI => $thV)
                                         {
+                                            if (isset($_GET['area']) && $_GET['area']==$v['area'])
+                                                $activeArea=$k; //Индекс активной эхи, при возврате из списка сообщений трэда.
                                             ?>
                                                 <a href="<?php echo vFIDO_URL;?>?mode=thread&id=<?php echo $thV['hash'];?>"><?php echo $thV['subject'];?></a><br />
                                             <?php
@@ -64,6 +59,13 @@ if (!defined('vFIDO_RUN'))
 			</div>
                         <?php } ?>
 		</div>
+        <script type="text/javascript">
+	$(function(){
 
+				// Accordion
+				$("#accordion").accordion({ header: "h3",active: <?php echo $activeArea; ?>});
+
+        });
+        </script>
     </body>
 </html>
