@@ -146,7 +146,7 @@ pre.quote2 {
 echo message2html(split("\n",wordwrap($m['text'],100)));
 
                 ?></div>
-                <br />Есть что сказать? <a href="<?php echo vFIDO_URL;?>?mode=newmessage&replyto=<?php echo $m['id']; ?>">Напишите ответ!</a>
+                <br />Есть, что сказать? <a href="<?php echo vFIDO_URL;?>?mode=newmessage&replyto=<?php echo $m['id']; ?>">Напиши ответ!</a>
                 <hr />
                 <div style="float:left;">
                     <?php
@@ -155,7 +155,7 @@ echo message2html(split("\n",wordwrap($m['text'],100)));
                     if ($prevMsg!=array())
                     {
                         ?>
-                        <a href="<?php echo vFIDO_URL;?>?mode=message&thread=<?php echo $_GET['thread'];?>&id=<?php echo $prevMsg['id'];?>">&lt;&lt;Предидущее</a>
+                        <a href="<?php echo vFIDO_URL;?>?mode=message&thread=<?php echo $_GET['thread'];?>&id=<?php echo $prevMsg['id'];?>">&lt;&lt;Предыдущее</a>
                     <?php
                     }
                     ?>
