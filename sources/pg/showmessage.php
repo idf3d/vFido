@@ -21,10 +21,7 @@ if (!isset($_GET['id']))
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
-        <link type="text/css" href="css/main.css" rel="stylesheet" />
-	<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script>
+
         		<style type="text/css">
 pre.message {
   font-style: normal;
@@ -59,7 +56,7 @@ pre.tearline {
   font-style: normal;
   font-weight: bold;
   font-size: 12px;
-  color: #00FFFF;
+  color: #0000CC;
   background-color: #FFFFFF;
   font-family: arial, sans-serif;
   text-decoration:  none;
@@ -121,46 +118,46 @@ pre.quote2 {
         <title></title>
     </head>
     <body>
-		<h2 class="header">Сообщение</h2>
+		<!-- <h2 class="header">Сообщение</h2> -->
                 <?php
                     $m=areasGetMessage($_GET['id']);
 ?>
-                <b>От:</b> <?php echo $m['fromname'].'('.$m['fromaddr'].')'; ?><br />
-                <b>Кому:</b> <?php echo $m['toname']; ?><br />
-                <b>Тема:</b> <?php echo $m['subject']; ?><br />
+                <pre class="message"><b>От:</b> <?php echo $m['fromname'].'('.$m['fromaddr'].')'; ?> <a href="<?php echo vFIDO_URL;?>?mode=newmessage&replyto=<?php echo $m['id']; ?>">Ответить</a></pre>
+                <pre class="message"><b>Кому:</b> <?php echo $m['toname']; ?></pre>
+                <pre class="message"><b>Тема:</b> <?php echo $m['subject']; ?></pre>
 
-        <?php if (isset($_GET['thread']))
-        {
-        echo '<a href="'.vFIDO_URL.'?mode=thread&id='.$_GET['thread'].'">&lt;&lt; назад, к списку сообщений.</a>';
-        } elseif (isset($m['thread'])&&(trim($m['thread'])!=''))
-        {
-            $q1=mysql_query('SELECT hash FROM threads where thread="'.addslashes($m['thread']).'"');
-            if ($f1=mysql_fetch_assoc($q1))
-                echo '<a href="'.vFIDO_URL.'?mode=thread&id='.$f1['hash'].'">&lt;&lt; назад, к списку сообщений.</a>';
-        }
+        <?php
+        //if (isset($_GET['thread']))
+        //{
+        //echo '<a href="'.vFIDO_URL.'?mode=thread&id='.$_GET['thread'].'">&lt;&lt; назад, к списку сообщений.</a>';
+        //} elseif (isset($m['thread'])&&(trim($m['thread'])!=''))
+        //{
+        //    $q1=mysql_query('SELECT hash FROM threads where thread="'.addslashes($m['thread']).'"');
+        //    if ($f1=mysql_fetch_assoc($q1))
+        //        echo '<a href="'.vFIDO_URL.'?mode=thread&id='.$f1['hash'].'">&lt;&lt; назад, к списку сообщений.</a>';
+        //}
         ?>
                 <hr />
-    <div id="msgtxt">
 <?php
 
 echo message2html(split("\n",wordwrap($m['text'],100)));
 
-                ?></div>
-                <br />Есть, что сказать? <a href="<?php echo vFIDO_URL;?>?mode=newmessage&replyto=<?php echo $m['id']; ?>">Напиши ответ!</a>
-                <hr />
-                <div style="float:left;">
+                ?><hr />
+                <!-- <pre class="message"> Есть, что сказать? <a href="<?php echo vFIDO_URL;?>?mode=newmessage&replyto=<?php echo $m['id']; ?>">Напиши ответ!</a></pre> -->
+                <!--<hr />
+                 <div style="float:left;"> -->
                     <?php
                     
-                    $prevMsg=areasGetMessageByMSGid($m['reply']);
-                    if ($prevMsg!=array())
-                    {
+                //    $prevMsg=areasGetMessageByMSGid($m['reply']);
+                //    if ($prevMsg!=array())
+                 //   {
                         ?>
-                        <a href="<?php echo vFIDO_URL;?>?mode=message&thread=<?php echo $_GET['thread'];?>&id=<?php echo $prevMsg['id'];?>">&lt;&lt;Предыдущее</a>
+                       <!-- <a href="<?php echo vFIDO_URL;?>?mode=message&thread=<?php echo $_GET['thread'];?>&id=<?php echo $prevMsg['id'];?>">&lt;&lt;Предыдущее</a>-->
                     <?php
-                    }
+//                    }
                     ?>
-                </div>
-                
+  <!--              </div> -->
+                <!--
                 <div  style="float:right;">
                     <?php
                      $nextMsgs=areasGetNextMessagesInThread($m['msgid']);
@@ -174,6 +171,6 @@ echo message2html(split("\n",wordwrap($m['text'],100)));
                         }
                     }
                     ?>
-                </div>
+                </div>-->
     </body>
 </html>

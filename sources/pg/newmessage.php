@@ -41,8 +41,6 @@ if (isset($_GET['replyto']))
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
         <link type="text/css" href="css/main.css" rel="stylesheet" />
-	<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script>
         <title></title>
     </head>
     <body>
@@ -63,17 +61,11 @@ if (isset($_GET['replyto']))
                         После предварительной проверки модератором, оно будет отправлено в эхоконференцию.
                         <br /><br />
                         
-                        <?php if (isset($msg['id'])) { ?>
-                        <a href="<?php echo vFIDO_URL;?>?mode=message&id=<?php echo $msg['id']; ?>">Вернуться к списку эхоконференций</a><br />
-                        <?php } ?>
-
-                        <a href="<?php echo vFIDO_URL;?>?mode=list">Вернуться к просмотру сообщений</a>
                         <?php
                     }// end of sendmessage
                     else {//errormessage
                         ?>
                         <font color="red">Ошибка:</font> не удалось отправить сообщение.<br />Пожалуйста, убедитесь, что заполнены ВСЕ поля формы отправки сообщения.<br /><br />
-                        <a href="<?php echo vFIDO_URL;?>?mode=list">Вернуться к списку эхоконференций</a>
                         <?php } //end of errormessage
                     
                 } else
@@ -88,7 +80,8 @@ if (isset($_GET['replyto']))
                 </table>
                 <textarea cols="60" rows="10" name="msgtxt"><?php echo $msgtext ?></textarea>
                 <br />
-                <input type="submit" value="Отправить"><input type="button" value="Отменить" onclick="document.location.href='<?php echo vFIDO_URL;?>?mode=list';">
+                <input type="submit" value="Отправить">
+                <!-- <input type="button" value="Отменить" onclick="document.location.href='<?php echo vFIDO_URL;?>?mode=list';"> -->
                 <input type="hidden" name="snd" value="1">
                 </form><?php } ?>
     </body>
