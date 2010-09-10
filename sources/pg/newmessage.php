@@ -81,7 +81,7 @@ if (isset($_GET['replyto']))
                 <tr><td><b>Кому:</b></td><td> <input type="text" name="msgto" value="<?php echo$msgto ?>"></td></tr>
                 <tr><td><b>Тема:</b></td><td> <input type="text" name="msgsubj" value="<?php echo $msgsubj ?>"></td></tr>
                 </table>
-                <textarea cols="60" rows="10" name="msgtxt"><?php echo $msgtext ?></textarea>
+                <textarea cols="80" rows="10" name="msgtxt"><?php echo $msgtext ?></textarea>
                 <br />
                 <input type="submit" value="Отправить">
                 <!-- <input type="button" value="Отменить" onclick="document.location.href='<?php echo vFIDO_URL;?>?mode=list';"> -->
