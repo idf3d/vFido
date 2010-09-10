@@ -22,8 +22,11 @@ if (isset($_GET['replyto']))
 
       $area=$msg['area'];
       $msgto=$msg['fromname'];
+      foreach (mb_split(" ", $msgto) as $name) {
+          $initials=$initials.mb_substr($name,0,1,'utf-8');
+      }
       $msgsubj=$msg['subject'];
-      $msgtext=message2textarea(split("\n",$msg['text']),'ZZ');
+      $msgtext=message2textarea(split("\n",$msg['text']),$initials);
       $rpl=$msg['msgid'];
 } else
 {
