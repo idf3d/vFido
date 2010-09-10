@@ -66,37 +66,75 @@ function message2html($text){
 }
 
 function message2textarea ($text,$quoute_string=""){
-    $return="";
-    $body_flag=false;
+    $return="";$i=1;$skip_empty=false;
+    $block="";$prefix="";$newprefix="";$quoteprefix="";
+    /*foreach($text as $string){
+        $i=$i+1;
+        $return=$return.$i.$string."\n";
+    }
+    return $return;*/
     foreach($text as $string){
       if (substr($string,0,1)!="@" and  (substr($string,0,5)!="AREA:" or $body_flag)){
         if (strtoupper(substr($string,0,10))==" * ORIGIN:"){
             break;
-        } elseif  (strtoupper(substr($string,0,3))!="..." and strtoupper(substr($string,0,3))!="---"){
-            $string=trim($string);
-	    if ($string) {
-              $first_space=strpos($string," ");
-              if (substr($string,$first_space-1,1)==">") {
-                $first_quote=strpos($string,">");
-                $string=substr($string,0,$first_quote).">".substr($string,$first_quote);
-                $string=str_replace ("<", "&lt;",$string);
-                $string=str_replace (">", "&gt;",$string);
-                $return=$return. " ".$string."\n";
-              } else {
-                $string=str_replace ("<", "&lt;",$string);
-                $string=str_replace (">", "&gt;",$string);
-                $return=$return. " $quoute_string&gt; ".$string."\n";
-              }
-            } else {
-	      $return=$return. "\n";
-	    }
+        } 
+        $string=trim($string);
+        $first_space=strpos($string," ");
+        if (substr($string,$first_space-1,1)==">") {
+            $first_quote=strpos($string,">");
+            $newprefix=substr($string,0,$first_space);
+            $string=substr($string,$first_space+1);
+        } else {
+            $newprefix="";
         }
+        if ($string=="" or $prefix!=$newprefix) {
+            if ($prefix) {
+                $quoteprefix=$prefix;
+            } else {
+                $quoteprefix=$quoute_string;
+            }
+            if (trim($buffer)  !="") {
+                $return=$return . quote_buffer($buffer,$quoteprefix);
+                $skip_empty=false;
+            }
+            if ($string=="") {
+                if(!$skip_empty) $return=$return."\n";
+                $skip_empty=true;
+            } else {
+                $skip_empty=false;
+            }
+            $prefix=$newprefix;
+            $buffer="";
+        }
+        $buffer=$buffer . $string . " ";
+
       }
-    $body_flag=1;
     }
-    return $return;
+    return htmlspecialchars($return);
 }
 
+
+function quote_buffer($buffer,$prefix) {
+    $return="";
+    $charcount=80-mb_strlen($prefix,'utf-8');
+    while ($buffer!="") {
+        if (mb_strlen($buffer,'utf-8') < $charcount ) {
+            $result=$result." ".$prefix . "> " . $buffer."\n";
+            $buffer="";
+        } else {
+            $chunk=mb_substr($buffer,0,$charcount,'utf-8');
+            $buffer=mb_substr($buffer,$charcount,mb_strlen($buffer,'utf-8'),'utf-8');
+            $last_space=mb_strrpos($chunk, " ",0,'utf-8');
+            if($last_space!=0) {
+               $hvost=mb_substr($chunk,$last_space+1,mb_strlen($chunk,'utf-8'),'utf-8');
+               $chunk=mb_substr($chunk,0,$last_space,'utf-8');
+               $buffer=$hvost.$buffer;
+            }
+            $result=$result." ".$prefix . "> " . $chunk."\n";
+        }
+    }
+    return $result;
+}
 function nameToFTN($str){
 	// Based on function from Imbolc http://php.imbolc.name
 
