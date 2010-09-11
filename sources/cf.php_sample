@@ -12,4 +12,6 @@ define('vFIDO_MYSQ_HOST','');
 define('vFIDO_MYSQL_USER','');
 define('vFIDO_MYSQL_PWD','');
 define('vFIDO_MYSQL_DBNAME','');
+
+define('vFido_localRun',true);//программа запущена локально, авторизация на вконтакте не производится, пользователю дается фейковое имя.
 ?>
