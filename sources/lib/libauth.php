@@ -31,6 +31,17 @@ function auth() // авторизация
             return true;
             // TODO: усилить проверку сессии, сделать таймауты
 
+	if (defined('vFido_localRun') && vFido_localRun)
+	{ //программа запущена локально, авторизация не нужна.
+	  $_SESSION['uid']=1;
+	  $uinf['firstname']='Вася';
+	  $uinf['lastname']='Пупкин';
+	  $_SESSION['ftnName']=nameToFTN($uinf['firstname'].' '.$uinf['lastname']);
+          $_SESSION['ftnAddress']='2:5083/86.400';
+          $_SESSION['uinf']=$uinf;
+	  return true;
+	}
+
         if (!authCheckGETparams())
 	  {
 	    echo 'ERR:PRMS';
