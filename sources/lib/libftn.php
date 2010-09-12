@@ -116,7 +116,7 @@ function message2textarea ($text,$quoute_string=""){
 
 function quote_buffer($buffer,$prefix) {
     $return="";
-    $charcount=80-mb_strlen($prefix,'utf-8');
+    $charcount=60-mb_strlen($prefix,'utf-8');
     while ($buffer!="") {
         if (mb_strlen($buffer,'utf-8') < $charcount ) {
             $result=$result." ".$prefix . "> " . $buffer."\n";
