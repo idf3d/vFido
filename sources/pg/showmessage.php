@@ -23,7 +23,15 @@ if (!isset($_GET['id']))
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         		<style type="text/css">
-pre.message {
+
+pre {
+  white-space: pre-wrap;       /* css-3 */
+  white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+  white-space: -pre-wrap;      /* Opera 4-6 */
+  white-space: -o-pre-wrap;    /* Opera 7 */
+  word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+ pre.message {
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -109,7 +117,7 @@ pre.quote2 {
 }
 
 #msgtxt {
-    height:300px;
+    hei-ght:300px;
     overflow: auto;
 }
 
@@ -140,7 +148,7 @@ pre.quote2 {
                 <hr />
 <?php
 
-echo message2html(split("\n",wordwrap($m['text'],100)));
+echo message2html(split("\n",$m['text']));
 
                 ?><hr />
                 <!-- <pre class="message"> Есть, что сказать? <a href="<?php echo vFIDO_URL;?>?mode=newmessage&replyto=<?php echo $m['id']; ?>">Напиши ответ!</a></pre> -->
