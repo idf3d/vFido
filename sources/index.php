@@ -3,16 +3,18 @@
  *    Тип файла: исполняемый php-скрипт
  */
 
+session_start();
+
 header("Content-type: text/html; charset=utf-8");
 //libraries and preparations
 define('vFIDO_RUN',1);
 include ('./cf.php'); //config file
-session_start();
 include ('./lib/libxml.php');
 include ('./lib/libDatabase.php');
 include ('./lib/libAreas.php');
 include ('./lib/libftn.php');
 include ('./lib/libauth.php');
+include ('./lib/libstat.php');
 dbPrepare();
 
 if (!auth())

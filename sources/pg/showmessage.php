@@ -150,7 +150,9 @@ pre.quote2 {
 
 echo message2html(split("\n",$m['text']));
 
-                ?><hr />
+statIncUserReadedMessages();
+statIncAreaReadedMessages($m['area']);
+?><hr />
                 <!-- <pre class="message"> Есть, что сказать? <a href="<?php echo vFIDO_URL;?>?mode=newmessage&replyto=<?php echo $m['id']; ?>">Напиши ответ!</a></pre> -->
                 <!--<hr />
                  <div style="float:left;"> -->
