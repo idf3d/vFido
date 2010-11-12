@@ -15,12 +15,12 @@ $wl=isset($_GET['wl'])?$_GET['wl']:'n';
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link type="text/css" href="css/main.css" rel="stylesheet" />
-        <title></title>
-    </head>
-    <body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" href="css/main.css" rel="stylesheet" />
+<title></title>
+</head>
+<body>
             <?php
                 $pg=isset($_GET['pg'])?$_GET['pg']:''; // получаем идентификатор страницы.
                 

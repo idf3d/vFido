@@ -40,12 +40,12 @@ if (isset($_GET['replyto']))
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
-        <link type="text/css" href="css/main.css" rel="stylesheet" />
-        <title></title>
-    </head>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
+<link type="text/css" href="css/main.css" rel="stylesheet" />
+<title></title>
+</head>
     <body>
 
 		<h2 class="header">Сообщение</h2>

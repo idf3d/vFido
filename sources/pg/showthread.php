@@ -17,19 +17,19 @@ if (!isset($_GET['id']))
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link type="text/css" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
-        <link type="text/css" href="css/tree.css" rel="stylesheet" />
-	<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-	<script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script>
-        <script type="text/javascript" src="js/tree.js"></script>
-        <?php
-        // так же на  http://habrahabr.ru/blogs/webdev/56278/ лежит css для дерево которое сворачивается/разворачивается.
-        ?>
-        <title></title>
-    </head>
-    <body>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
+<link type="text/css" href="css/tree.css" rel="stylesheet" />
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script>
+<script type="text/javascript" src="js/tree.js"></script>
+<?php
+// ↑↑ также на http://habrahabr.ru/blogs/webdev/56278/ лежит CSS дерева, которое сворачивается да разворачивается
+?>
+<title></title>
+</head>
+<body>
 <?php  $msg=areasGetLastMessagesFromThread($_GET['id'],1000); ?>
         <p><a href="<?php echo vFIDO_URL;?>?mode=list&area=<?php echo $msg[0]['area']; ?>">&lt;&lt; Назад, к списку конференций.</a></p>
     <div id="multi-derevo">
