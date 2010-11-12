@@ -3,15 +3,11 @@
  *    Тип файла: отображаемый
  *    Назначение файла: Показ сообщения
  */
-
-if (!defined('vFIDO_RUN'))
-{
+if (!defined('vFIDO_RUN')) {
     echo 'access violation at address FAFAFED';// sorry ;)
     exit();
 }
-
-if (!isset($_GET['id']))
-{
+if (!isset($_GET['id'])) {
     header('Location: '.vFIDO_URL);
     exit();
 }

@@ -3,15 +3,11 @@
  *    Тип файла: отображаемый
  *    Назначение файла: Создание сообщения
  */
-if (!defined('vFIDO_RUN'))
-{
+if (!defined('vFIDO_RUN')) {
     echo 'access violation at address FAFAFED';// sorry ;)
     exit();
 }
-
-if (isset($_GET['replyto']))
-{
-
+if (isset($_GET['replyto'])) {
     $msg=areasGetMessage($_GET['replyto']);
 
     if ($msg==array())
@@ -28,8 +24,7 @@ if (isset($_GET['replyto']))
       $msgsubj=$msg['subject'];
       $msgtext=message2textarea(split("\n",$msg['text']),$initials);
       $rpl=$msg['msgid'];
-} else
-{
+} else {
       $area=isset($_GET['area'])?$_GET['area']:'NETMAIL';
       $msgto='All';
       $msgsubj='';
