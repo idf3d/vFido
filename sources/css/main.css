@@ -1,7 +1,107 @@
-			body{ font: 62.5% "Trebuchet MS", sans-serif; margin: 50px;}
-			.header { margin-top: 2em; }
-			#dialog_link {padding: .4em 1em .4em 20px;text-decoration: none;position: relative;}
-			#dialog_link span.ui-icon {margin: 0 5px 0 0;position: absolute;left: .2em;top: 50%;margin-top: -8px;}
-			ul#icons {margin: 0; padding: 0;}
-			ul#icons li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
-			ul#icons span.ui-icon {float: left; margin: 0 4px;}
+body{
+   font: 62.5% "Trebuchet MS", sans-serif;
+   margin: 50px;
+}
+.header {
+   margin-top: 2em;
+}
+#dialog_link {
+   padding: .4em 1em .4em 20px;
+   text-decoration: none;
+   position: relative;
+}
+#dialog_link span.ui-icon {
+   margin: 0 5px 0 0;
+   position: absolute;
+   left: .2em; top: 50%;
+   margin-top: -8px;
+}
+ul#icons {
+   margin: 0; padding: 0;
+}
+ul#icons li {
+   margin: 2px;
+   padding: 4px 0; 
+   position: relative;
+   cursor: pointer;
+   float: left;
+   list-style: none;
+}
+ul#icons span.ui-icon {
+   float: left;
+   margin: 0 4px;
+}
+pre {
+   white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+   white-space: -pre-wrap;      /* Opera 4-6 */
+   white-space: -o-pre-wrap;    /* Opera 7 */
+   white-space: pre-wrap;       /* CSS3 */
+   word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+pre.message {
+   font-style: normal;
+   font-weight: normal;
+   font-size: 12px;
+   color: #000000;
+   background-color: #FFFFFF;
+   font-family: arial, sans-serif;
+   text-decoration: none;
+   margin: 0;
+}
+pre.origin {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  color: #0000CC;
+  background-color: #FFFFFF;
+  font-family: arial, sans-serif;
+  text-decoration: none;
+  margin: 0;
+}
+
+pre.tearline {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  color: #0000CC;
+  background-color: #FFFFFF;
+  font-family: arial, sans-serif;
+  text-decoration: none;
+  margin: 0;
+}
+pre.tagline {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  color: #00FFFF;
+  background-color: #FFFFFF;
+  font-family: arial, sans-serif;
+  text-decoration: none;
+  margin: 0;
+}
+pre.quote1 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  color: #CC0000;
+  background-color: #FFFFFF;
+  font-family: arial, sans-serif;
+  text-decoration: none;
+  margin: 0;
+}
+
+pre.quote2 {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  color: #00CC00;
+  background-color: #FFFFFF;
+  font-family: arial, sans-serif;
+  text-decoration: none;
+  margin: 0;
+}
+
+#msgtxt {
+    hei-ght:300px;
+    overflow: auto;
+}
