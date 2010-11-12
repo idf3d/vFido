@@ -19,11 +19,21 @@ if (!isset($_GET['id']))
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
+<<<<<<< .mine
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link type="text/css" href="css/main.css" rel="stylesheet" />
+
+        <title></title>
+    </head>
+    <body>
+=======
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
 </head>
 <body>
+>>>>>>> .r31
 		<!-- <h2 class="header">Сообщение</h2> -->
                 <?php
                     $m=areasGetMessage($_GET['id']);
