@@ -2,7 +2,6 @@
 /*    Имя проекта: vfido
  *    Тип файла: исполняемый php-скрипт
  */
-
 session_start();
 
 header("Content-type: text/html; charset=utf-8");
@@ -40,19 +39,18 @@ else
     {
         case 'welcome':
             include ('./pg/welcome.php');
-            break;
+        break;
         case 'list':
             include ('./pg/arealist.php');
-            break;
+        break;
         case 'thread':
             include ('./pg/showthread.php');
-            break;
+        break;
         case 'message':
             include ('./pg/showmessage.php');
-            break;
+        break;
         case 'newmessage':
             include ('./pg/newmessage.php');
-            break;
+        break;
     }
-
 ?>
