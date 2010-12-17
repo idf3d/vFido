@@ -29,7 +29,7 @@ if (!defined('vFIDO_RUN')) {
     <div id="multi-derevo">
    <h4>Сообщения адресованные на имя <b><?php echo $_SESSION['ftnName']; ?></b></h4>
   <ul><!-- 1 уровень -->
-
+    <?php if ($msg==array()) echo "<li><span>Сообщений нет</span></li>"; ?>
       <!-- ----------- -->
                  <?php
                     foreach ($msg as $m)
