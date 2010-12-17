@@ -50,6 +50,21 @@ function areasGetLastMessagesFromThread($hash, $lim=100)
     return $ret;
 }
 
+function areasGetMyMessages()
+{
+
+    $ret=array();
+
+        $msgQ=mysql_query("SELECT * FROM messages WHERE toname='".$_SESSION['ftnName']."' AND NOT area='' ORDER BY recieved DESC LIMIT 0,1000");
+       
+        while ($msg=mysql_fetch_assoc($msgQ))
+        {
+            $ret[]=$msg;
+        }
+
+        return $ret;
+}
+
 function areasGetMessage ($id)
 {
     $id=(int)$id;

@@ -73,6 +73,8 @@ function message2textarea ($text,$quoute_string=""){
         $return=$return.$i.$string."\n";
     }
     return $return;*/
+    $body_flag=false;
+    $buffer="";
     foreach($text as $string){
       if (substr($string,0,1)!="@" and  (substr($string,0,5)!="AREA:" or $body_flag)){
         if (strtoupper(substr($string,0,10))==" * ORIGIN:"){
@@ -115,7 +117,7 @@ function message2textarea ($text,$quoute_string=""){
 
 
 function quote_buffer($buffer,$prefix) {
-    $return="";
+    $result="";
     $charcount=60-mb_strlen($prefix,'utf-8');
     while ($buffer!="") {
         if (mb_strlen($buffer,'utf-8') < $charcount ) {

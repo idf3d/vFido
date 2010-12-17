@@ -18,6 +18,7 @@ if (isset($_GET['replyto'])) {
 
       $area=$msg['area'];
       $msgto=$msg['fromname'];
+      $initials="";
       foreach (mb_split(" ", $msgto) as $name) {
           $initials=$initials.mb_substr($name,0,1,'utf-8');
       }
@@ -42,8 +43,6 @@ if (isset($_GET['replyto'])) {
 <title></title>
 </head>
     <body>
-
-		<h2 class="header">Сообщение</h2>
                 <?php
                 if (isset($_POST['snd']))
                 {

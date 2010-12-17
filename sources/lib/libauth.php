@@ -34,8 +34,8 @@ function auth() // авторизация
 	if (defined('vFido_localRun') && vFido_localRun)
 	{ //программа запущена локально, авторизация не нужна.
 	  $_SESSION['uid']=1;
-	  $uinf['firstname']='Вася';
-	  $uinf['lastname']='Пупкин';
+	  $uinf['firstname']=vFido_localRun_Name;
+	  $uinf['lastname']=vFido_localRun_lastName;
 	  $_SESSION['ftnName']=nameToFTN($uinf['firstname'].' '.$uinf['lastname']);
           $_SESSION['ftnAddress']='2:5083/86.400';
           $_SESSION['uinf']=$uinf;

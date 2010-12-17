@@ -27,8 +27,11 @@ if (!defined('vFIDO_RUN'))
 <title></title>
 </head>
     <body>
-		<h2 class="header">Эхоконференции</h2>
+        <h2 class="header">Эхоконференции</h2>
 		<div id="accordion">
+                    <div id="my">
+				<h3><a href="<?php echo vFIDO_URL;?>?mode=showmy">Адресованные мне письма</a></h3>
+                    </div>
                     <?php
                     $t=areasGetList();
                     $activeArea='false';
@@ -47,7 +50,7 @@ if (!defined('vFIDO_RUN'))
                                         foreach ($thr as $thrI => $thV)
                                         {
                                             if (isset($_GET['area']) && $_GET['area']==$v['area'])
-                                                $activeArea=$k; //Индекс активной эхи, при возврате из списка сообщений трэда.
+                                                $activeArea=$k+1; //Индекс активной эхи, при возврате из списка сообщений трэда, смещаем на 1 тк первая - карбонка
                                             ?>
                                                 <a href="<?php echo vFIDO_URL;?>?mode=thread&id=<?php echo $thV['hash'];?>"><?php echo $thV['subject'];?></a><br />
                                             <?php
@@ -63,6 +66,8 @@ if (!defined('vFIDO_RUN'))
 
 				// Accordion
 				$("#accordion").accordion({ header: "h3",active: <?php echo $activeArea; ?>});
+                               $("#my").click(function() {  document.location="<?php echo vFIDO_URL;?>?mode=showmy";});
+
 
         });
         </script>

@@ -13,5 +13,7 @@ define('vFIDO_MYSQL_USER','');
 define('vFIDO_MYSQL_PWD','');
 define('vFIDO_MYSQL_DBNAME','');
 
-define('vFido_localRun',true);//программа запущена локально, авторизация на вконтакте не производится, пользователю дается фейковое имя.
+define('vFido_localRun',true);//программа запущена локально, авторизация на вконтакте не производится, пользователю дается следующее имя:
+define('vFido_localRun_Name',"Вася");
+define('vFido_localRun_lastName',"Пупкин");
 ?>

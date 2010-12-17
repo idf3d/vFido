@@ -52,5 +52,8 @@ else
         case 'newmessage':
             include ('./pg/newmessage.php');
         break;
+        case 'showmy':
+            include ('./pg/showmy.php');
+        break;
     }
 ?>
