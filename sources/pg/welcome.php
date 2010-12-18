@@ -40,7 +40,7 @@ $wl=isset($_GET['wl'])?$_GET['wl']:'n';
 <?php
 
 function printMainWelcome(){
-?><h2 class="header">Добро пожаловать! (vFido v.0.2.9)</h2>
+?><h2 class="header">Добро пожаловать! (vFido v.0.2.91)</h2>
 <div style="font: 13px;">
 В настоящее время программа находится в тестовом режиме и подвергается беспрестанным улучшениям.
 <p>

@@ -22,6 +22,8 @@ if (!auth())
     exit();
 }
 
+statLogVisit();
+
 // main executable.
 if (isset ($_GET['mode']))
 {
@@ -37,9 +39,6 @@ else
 
     switch ($mode)
     {
-        case 'welcome':
-            include ('./pg/welcome.php');
-        break;
         case 'list':
             include ('./pg/arealist.php');
         break;
@@ -54,6 +53,9 @@ else
         break;
         case 'showmy':
             include ('./pg/showmy.php');
+        break;
+        default :
+            include ('./pg/welcome.php');
         break;
     }
 ?>
