@@ -109,7 +109,6 @@ function printStat(){
     $sGlob=statGetStat();
 ?><h2 class="header">Статистика приложения</h2>
 
-Сегодня приложение запустили <b><?php echo $sGlob['runs']; ?></b> раз.<br />
 Количество пользователей за сегодня: <b><?php echo $sGlob['users']; ?></b><br/>
 За сегодня прочитано сообщений: <b><?php echo $sGlob['rds']; ?></b><br />
 Прочитано сообщений за все время: <b><?php echo $sGlob['rTotal']; ?></b>
@@ -121,21 +120,23 @@ function printStat(){
     <tr><td>
 <table class="solidborder">
     <tr>
+        <th class="solidborder">&nbsp;</th>
         <th class="solidborder"> Имя </th>
         <th class="solidborder"> Сообщений <br/> прочитано </th>
     </tr>
-    <?php foreach ($sGlob['top10u'] as $u) {  ?>
-    <tr><td class="solidborder"><?php echo $u['firstname']." ".$u['lastname'];  ?></td><td class="solidborder"><?php echo $u['statReadedMsgsCount']; ?></td></tr>
+    <?php $c=1; foreach ($sGlob['top10u'] as $u) {  ?>
+    <tr><td class="solidborder"><?php echo $c++; ?></td><td class="solidborder"><?php echo $u['firstname']." ".$u['lastname'];  ?></td><td class="solidborder"><?php echo $u['statReadedMsgsCount']; ?></td></tr>
     <?php } ?>
 </table>
     </td><td>
 <table class="solidborder">
     <tr>
+        <th class="solidborder">&nbsp;</th>
         <th class="solidborder"> Название </th>
         <th class="solidborder"> Сообщений <br /> прочитано </th>
     </tr>
-        <?php foreach ($sGlob['top10e'] as $e) {  ?>
-    <tr><td class="solidborder"><?php echo $e['area'];  ?></td><td class="solidborder"><?php echo $e['statReadedMsgsCount']; ?></td></tr>
+        <?php $c=1; foreach ($sGlob['top10e'] as $e) {  ?>
+    <tr><td class="solidborder"><?php echo $c++; ?></td><td class="solidborder"><?php echo $e['area'];  ?></td><td class="solidborder"><?php echo $e['statReadedMsgsCount']; ?></td></tr>
     <?php } ?>
 </table>
 
