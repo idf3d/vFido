@@ -1,6 +1,19 @@
 body{
    font: 62.5% "Trebuchet MS", sans-serif;
 }
+
+table {
+   font: 70% "Trebuchet MS", sans-serif;
+}
+
+.solidborder{
+   font: 70% "Trebuchet MS", sans-serif;
+   text-align: center;
+   border: 1px solid;
+   cellspacing:0;
+   border-collapse: collapse;
+}
+
 .header {
    margin-top: 2em;
 }

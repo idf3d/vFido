@@ -29,6 +29,9 @@ $wl=isset($_GET['wl'])?$_GET['wl']:'n';
       case 'app':
          printAboutApp();
       break;
+      case 'stat':
+         printStat();
+      break;
       default:
          printMainWelcome();
       break;
@@ -40,7 +43,7 @@ $wl=isset($_GET['wl'])?$_GET['wl']:'n';
 <?php
 
 function printMainWelcome(){
-?><h2 class="header">Добро пожаловать! (vFido v.0.2.91)</h2>
+?><h2 class="header">Добро пожаловать! (vFido v.0.2.92)</h2>
 <div style="font: 13px;">
 В настоящее время программа находится в тестовом режиме и подвергается беспрестанным улучшениям.
 <p>
@@ -60,11 +63,11 @@ function printMainWelcome(){
 
 function printNavigation(){
 ?><div style="font: 13px; ">
-Для продолжения работы перейди к <a href="<?php echo vFIDO_URL;?>?mode=list">списку конференций</a>.
-<p>
-<b>Дополнительная информация:</b><br />
+<b>Навигация:</b><br />
+→ <a href="<?php echo vFIDO_URL;?>?mode=list">Список конференций</a><br />
 → <a href="<?php echo vFIDO_URL;?>?pg=fido">Что такое Фидо?</a><br />
 → <a href="<?php echo vFIDO_URL;?>?pg=app">О программе vFido</a><br />
+→ <a href="<?php echo vFIDO_URL;?>?pg=stat">Статистика vFido</a><br />
 </div>
 <?php
 }
@@ -92,12 +95,52 @@ function printAboutApp(){
 Подобно самому Фидонету, приложение vFido развивается на некоммерческой основе,
 в свободное от основной работы время его авторов.
 <p>
-<b>В данное время над приложением работают:</b>
+<b>Над приложением работают:</b>
 <p>
 → Yuriy Lukyanets (2:5086/83)<br />
-→ Sergei Shutov (3:712/550)
+→ Sergei Shutov (3:712/550) <br />
+→ Mithgol the Webmaster (2:5063/88)
 <p>
 Если вы хотите присоединиться к нам и работать над развитием и улучшением приложения, напишите об этом на e-mail df@dflab.net. Для участия в проекте требуется знание языка PHP, совместная разработка производится с использованием SVN.
+<?php
+}
+
+function printStat(){
+    $sGlob=statGetStat();
+?><h2 class="header">Статистика приложения</h2>
+
+Сегодня приложение запустили <b><?php echo $sGlob['runs']; ?></b> раз.<br />
+Количество пользователей за сегодня: <b><?php echo $sGlob['users']; ?></b><br/>
+За сегодня прочитано сообщений: <b><?php echo $sGlob['rds']; ?></b><br />
+Прочитано сообщений за все время: <b><?php echo $sGlob['rTotal']; ?></b>
+
+<p>    
+<table>
+
+    <tr><td align="center">Top10 пользователей</td><td align="center">Top10 конференций</td></tr>
+    <tr><td>
+<table class="solidborder">
+    <tr>
+        <th class="solidborder"> Имя </th>
+        <th class="solidborder"> Сообщений <br/> прочитано </th>
+    </tr>
+    <?php foreach ($sGlob['top10u'] as $u) {  ?>
+    <tr><td class="solidborder"><?php echo $u['firstname']." ".$u['lastname'];  ?></td><td class="solidborder"><?php echo $u['statReadedMsgsCount']; ?></td></tr>
+    <?php } ?>
+</table>
+    </td><td>
+<table class="solidborder">
+    <tr>
+        <th class="solidborder"> Название </th>
+        <th class="solidborder"> Сообщений <br /> прочитано </th>
+    </tr>
+        <?php foreach ($sGlob['top10e'] as $e) {  ?>
+    <tr><td class="solidborder"><?php echo $e['area'];  ?></td><td class="solidborder"><?php echo $e['statReadedMsgsCount']; ?></td></tr>
+    <?php } ?>
+</table>
+
+</table>
+</p>
 <?php
 }
 ?>

@@ -42,4 +42,55 @@ function statLogVisit()
     }
 }
 
+function statGetStat() // возвращает массив с общей статистикой
+{
+    //SELECT * FROM `stat_sessions` WHERE DATE(datetime)=CURDATE();
+    $sql_today_runs="SELECT COUNT(id) AS runs, SUM(msgs_readed_in_session) AS rds  FROM stat_sessions WHERE DATE(datetime)=CURDATE() AND msgs_readed_in_session>0";
+    $sql_today_users="SELECT * FROM stat_sessions WHERE DATE( DATETIME ) = CURDATE( )  AND msgs_readed_in_session >0 GROUP BY uid";
+    $sql_top10_users="SELECT * FROM `vfido_users` ORDER BY statReadedMsgsCount DESC LIMIT 0,10";
+    $sql_read_total="SELECT SUM(statReadedMsgsCount) as rTotal FROM `vfido_users`";
+    $sql_top10_echoes="SELECT * FROM  `areas` ORDER BY  `areas`.`statReadedMsgsCount` DESC LIMIT 0 , 10";
+
+
+    $rr=mysql_query($sql_today_runs);
+    $ru=mysql_query($sql_today_users);
+    $Etop=mysql_query($sql_top10_echoes);
+    $Utop=mysql_query($sql_top10_users);
+    $RTotal=mysql_query($sql_read_total);
+
+    $stat=array('runs'=>-1,'rds'=>-1,'users'=>-1,'top10e'=>array(),'top10u'=>array(),'rTotal'=>-1); // если не получится получить статистику - заведомо неправильные числа
+
+    if ($fr= mysql_fetch_assoc($rr))
+        $stat=array_merge ($stat,$fr);
+
+    if ($RTotalf= mysql_fetch_assoc($RTotal))
+        $stat=array_merge ($stat,$RTotalf);
+
+        $stat['users']=mysql_num_rows($ru);
+
+
+    while ($t=  mysql_fetch_array($Etop))
+        $stat['top10e'][]=$t;
+
+
+    while ($t1=  mysql_fetch_assoc($Utop))
+        $stat['top10u'][]=$t1;
+
+
+    return $stat;// PROFIT111 ;)
+
+}
+
+function statGetMyStat() //возвращает массив с личной статистикой пользователя
+{
+    if (!auth())
+        return false;
+
+    $s="SELECT COUNT(id) AS runs , SUM(msgs_readed_in_session) AS rs FROM stat_sessions WHERE uid=".$_SESSION['uid'];
+    $sr=mysql_query($s);
+
+    return mysql_fetch_assoc($sr);
+
+}
+
 ?>
