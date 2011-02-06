@@ -33,19 +33,21 @@ function statLogVisit()
     if (!auth())
         return false;
 
-    $diff=time()-((isset($_SESSION['stat_loggedAt']))?$_SESSION['stat_loggedAt']:0);
-    if ($diff>86340)//23 часа 59 минут
+    $l=(isset($_SESSION['stat_loggedAt']))?$_SESSION['stat_loggedAt']:0;
+
+    if ($l<mktime(0,0)) // если залогинились раньше чем 00:00 текущих суток...
     {
         mysql_query("INSERT INTO stat_sessions (uid) VALUES (".$_SESSION['uid'].")");
         $_SESSION['stat_visitID']=mysql_insert_id();
         $_SESSION['stat_loggedAt']=time();
     }
+    return true;
 }
 
 function statGetStat() // возвращает массив с общей статистикой
 {
     //SELECT * FROM `stat_sessions` WHERE DATE(datetime)=CURDATE();
-    $sql_today_runs="SELECT COUNT(id) AS runs, SUM(msgs_readed_in_session) AS rds  FROM stat_sessions WHERE DATE(datetime)=CURDATE() AND msgs_readed_in_session>0";
+    $sql_today_runs="SELECT SUM(msgs_readed_in_session) AS rds  FROM stat_sessions WHERE DATE(datetime)=CURDATE() AND msgs_readed_in_session>0";
     $sql_today_users="SELECT * FROM stat_sessions WHERE DATE( DATETIME ) = CURDATE( )  AND msgs_readed_in_session >0 GROUP BY uid";
     $sql_top10_users="SELECT * FROM `vfido_users` ORDER BY statReadedMsgsCount DESC LIMIT 0,10";
     $sql_read_total="SELECT SUM(statReadedMsgsCount) as rTotal FROM `vfido_users`";
@@ -58,7 +60,7 @@ function statGetStat() // возвращает массив с общей ста
     $Utop=mysql_query($sql_top10_users);
     $RTotal=mysql_query($sql_read_total);
 
-    $stat=array('runs'=>-1,'rds'=>-1,'users'=>-1,'top10e'=>array(),'top10u'=>array(),'rTotal'=>-1); // если не получится получить статистику - заведомо неправильные числа
+    $stat=array('rds'=>-1,'users'=>-1,'top10e'=>array(),'top10u'=>array(),'rTotal'=>-1); // если не получится получить статистику - заведомо неправильные числа
 
     if ($fr= mysql_fetch_assoc($rr))
         $stat=array_merge ($stat,$fr);

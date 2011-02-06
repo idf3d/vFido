@@ -1,11 +1,11 @@
 <?php
 /*    Имя проекта: vfido
  *    Тип файла: исполняемый php-скрипт
- */
-session_start();
+ */  
 
+session_start();
 header("Content-type: text/html; charset=utf-8");
-//libraries and preparations
+
 define('vFIDO_RUN',1);
 include ('./cf.php'); //config file
 include ('./lib/libxml.php');
@@ -14,6 +14,7 @@ include ('./lib/libAreas.php');
 include ('./lib/libftn.php');
 include ('./lib/libauth.php');
 include ('./lib/libstat.php');
+
 dbPrepare();
 
 if (!auth())
@@ -25,15 +26,8 @@ if (!auth())
 statLogVisit();
 
 // main executable.
-if (isset ($_GET['mode']))
-{
+if (isset ($_GET['mode'],$_SESSION['welcome_ok'])) // обязательно начинаем с welcome
     $mode=$_GET['mode'];
-    if (!isset($_SESSION['welcome_ok'])) // Пользователь обязательно должен посмотреть страничку Welcome
-    {
-        echo 'ERROR: FAE11';
-        exit();
-    }
-}
 else
     $mode='welcome';
 
