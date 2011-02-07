@@ -41,7 +41,9 @@ function areasGetLastMessagesFromThread($hash, $lim=100)
     $q=mysql_query ("SELECT * FROM threads Where hash = '".$hash."'");
     if ($t=mysql_fetch_assoc($q))
     {
-        $msgQ=mysql_query("SELECT * FROM messages WHERE thread='".$t['thread']."' ORDER BY recieved DESC LIMIT 0,".$lim);
+        // к сожалению надо проверять и thread и area, как показала практика, threadId может быть одинаковым для нескольких арий и тогда
+        // сообщения попадают не в ту эху, в которую надо
+        $msgQ=mysql_query("SELECT * FROM messages WHERE thread='".$t['thread']."' AND area ='".$t['area']."' ORDER BY recieved DESC LIMIT 0,".$lim);
         while ($msg=mysql_fetch_assoc($msgQ))
         {
             $ret[]=$msg;
