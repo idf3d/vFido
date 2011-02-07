@@ -1,0 +1,94 @@
+body{
+   font: 62.5% "Trebuchet MS", sans-serif;
+}
+
+table {
+   font: 70% "Trebuchet MS", sans-serif;
+}
+
+.solidborder{
+   font: 70% "Trebuchet MS", sans-serif;
+   text-align: center;
+   border: 1px solid;
+   cellspacing:0;
+   border-collapse: collapse;
+}
+
+.header {
+   margin-top: 2em;
+}
+#dialog_link {
+   padding: .4em 1em .4em 20px;
+   text-decoration: none;
+   position: relative;
+}
+#dialog_link span.ui-icon {
+   margin: 0 5px 0 0;
+   position: absolute;
+   left: .2em; top: 50%;
+   margin-top: -8px;
+}
+ul#icons {
+   margin: 0; padding: 0;
+}
+ul#icons li {
+   margin: 2px;
+   padding: 4px 0; 
+   position: relative;
+   cursor: pointer;
+   float: left;
+   list-style: none;
+}
+ul#icons span.ui-icon {
+   float: left;
+   margin: 0 4px;
+}
+pre {
+   white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+   white-space: -pre-wrap;      /* Opera 4-6 */
+   white-space: -o-pre-wrap;    /* Opera 7 */
+   white-space: pre-wrap;       /* CSS3 */
+   word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+pre.message,
+pre.origin,
+pre.tearline,
+pre.tagline,
+pre.quote1,
+pre.quote2 {
+   font-style: normal;
+   font-size: 12px;
+   background-color: #FFFFFF;
+   font-family: arial, sans-serif;
+   text-decoration: none;
+   margin: 0;
+}
+pre.message {
+   font-weight: normal;
+   color: #000000;
+}
+pre.origin {
+  font-weight: bold;
+  color: #0000CC;
+}
+
+pre.tearline {
+  font-weight: bold;
+  color: #0000CC;
+}
+pre.tagline {
+  font-weight: bold;
+  color: #00FFFF;
+}
+pre.quote1 {
+  font-weight: bold;
+  color: #CC0000;
+}
+pre.quote2 {
+  font-weight: bold;
+  color: #00CC00;
+}
+#msgtxt {
+    height: 300px;
+    overflow: auto;
+}
