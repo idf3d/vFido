@@ -38,7 +38,6 @@ if (isset($_GET['replyto'])) {
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
 <link type="text/css" href="css/main.css" rel="stylesheet" />
 <title></title>
 </head>

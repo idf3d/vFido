@@ -13,10 +13,10 @@ if (!defined('vFIDO_RUN')) {
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" href="css/ui-lightness/jquery-ui-1.8.2.custom.css" rel="stylesheet" />
+<link type="text/css" href="css/ui-lightness/jqui.css" rel="stylesheet" />
 <link type="text/css" href="css/tree.css" rel="stylesheet" />
-<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui-1.8.2.custom.min.js"></script>
+<script type="text/javascript" src="js/jq.js"></script>
+<script type="text/javascript" src="js/jqui.js"></script>
 <script type="text/javascript" src="js/tree.js"></script>
 <?php
 // ↑↑ также на http://habrahabr.ru/blogs/webdev/56278/ лежит CSS дерева, которое сворачивается да разворачивается

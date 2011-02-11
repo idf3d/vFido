@@ -25,7 +25,7 @@ $(document).ready(function () {
 */
 $('#multi-derevo li:has("ul")').find('a:first').prepend('<em class="marker"></em>');
 // вешаем событие на клик по ссылке
-$('#multi-derevo li span').click(function () {
+$('#multi-derevo li span').click(function  () {
   // снимаем выделение предыдущего узла
   $('a.current').removeClass('current');
   var a = $('a:first',this.parentNode);
@@ -49,8 +49,9 @@ $('#multi-derevo li span').click(function () {
    // было em.hasClass('open')?em.removeClass('open'):em.addClass('open');
    em.toggleClass('open');
  }
- $('#msgframe').attr('src',$('a.current').attr('href'));
 
+  $('#msgframe').attr('src',$('a.current').attr('href'));
+  
 return false;
 });
 })

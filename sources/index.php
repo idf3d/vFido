@@ -39,6 +39,9 @@ else
         case 'thread':
             include ('./pg/showthread.php');
         break;
+        case 'area':
+            include ('./pg/showarea.php');
+        break;
         case 'message':
             include ('./pg/showmessage.php');
         break;

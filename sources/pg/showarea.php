@@ -7,7 +7,7 @@ if (!defined('vFIDO_RUN')) {
     echo 'access violation at address FAFAFED';// sorry ;)
     exit();
 }
-if (!isset($_GET['id'])) {
+if (!isset($_GET['name'])) {
     header('Location: ' . vFIDO_URL);
     exit();
 }
@@ -28,28 +28,39 @@ if (!isset($_GET['id'])) {
 <title></title>
 </head>
 <body>
-<?php  $msg=areasGetLastMessagesFromThread($_GET['id'],1000); ?>
-        <p><a href="<?php echo vFIDO_URL;?>?mode=list&area=<?php echo $msg[0]['area']; ?>">&lt;&lt; Назад, к списку конференций.</a></p>
+<?php
+$threads=areasGetLastThreads($_GET['name'],20);
+$msg=array();
+?>
+        <p><a style="float:left;" href="<?php echo vFIDO_URL;?>?mode=list">&lt;&lt; Назад, к списку конференций</a>
+        <a  style="float:right;" href="<?php echo vFIDO_URL;?>?mode=newmessage&area=<?php echo $_GET['name'] ?>">[!] Написать сообщение</a>
+        <br />
+        </p>
     <div id="multi-derevo">
-  <h4>Эхоконференция <?php echo $msg[0]['area'].', обсуждение на тему '.$msg[0]['subject']; ?></h4>
+  <h4>Эхоконференция <?php echo $_GET['name']; ?></h4>
   <ul><!-- 1 уровень -->
+<?php
+            foreach ($threads as $th)
+            {
 
-      <!-- ----------- -->
-                 <?php
+                $msg=areasGetLastMessagesFromThread($th['hash']);
+
                     foreach ($msg as $m)
                     {
                         if ($m['level']==0)
                         {
                         ?><!-- li1 -->
-                            <li><span><a href="<?php echo vFIDO_URL;?>?mode=message&thread=<?php echo $_GET['id'];?>&id=<?php echo $m['id'];?>"><?php echo $m['subject'];?> (<?php echo $m['fromname'];?> -> <?php echo $m['toname'];?>)</a></span>
+                            <li><span><a href="<?php echo vFIDO_URL;?>?mode=message&id=<?php echo $m['id'];?>"><?php echo $m['subject'];?> (<?php echo $m['fromname'];?> -> <?php echo $m['toname'];?>)</a></span>
                         <?php printThreadMessageReplies($msg,$m['msgid']); ?></li><!-- li1 -->
                             <?php
                         }
                     }
-                ?>
+             }
+?>
   </ul>
     </div><!-- /multi-derevo -->
-    <iframe id="msgframe" width="100%" height="50%"></iframe>
+     <iframe id="msgframe" width="100%" height="50%"></iframe> 
+    
   </body>
 </html>
 
@@ -67,7 +78,9 @@ function printThreadMessageReplies($messages,$replyTomsgid)
                     $haveUL=true;
                 }
                 ?>
-                <li><span><a href="<?php echo vFIDO_URL;?>?mode=message&thread=<?php echo $_GET['id'];?>&id=<?php echo $m['id'];?>"><?php echo $m['fromname'];?> -> <?php echo $m['toname'];?></a></span>
+                <li><span>
+                        <a href="<?php echo vFIDO_URL;?>?mode=message&thread=<?php echo $_GET['id'];?>&id=<?php echo $m['id'];?>"><?php echo $m['fromname'];?> -> <?php echo $m['toname'];?></a>
+                    </span>
                <?php  printThreadMessageReplies($messages,$m['msgid']);?></li>
 <?php
            }

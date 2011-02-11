@@ -32,7 +32,7 @@ function areasGetLastThreads($areaname,$lim)
     return $ret;
 }
 
-function areasGetLastMessagesFromThread($hash, $lim=100)
+function areasGetLastMessagesFromThread($hash, $lim=100,$showOnlyUnread=false)
 {
     $hash=addslashes($hash);
     $lim=(int)$lim;
@@ -44,6 +44,7 @@ function areasGetLastMessagesFromThread($hash, $lim=100)
         // к сожалению надо проверять и thread и area, как показала практика, threadId может быть одинаковым для нескольких арий и тогда
         // сообщения попадают не в ту эху, в которую надо
         $msgQ=mysql_query("SELECT * FROM messages WHERE thread='".$t['thread']."' AND area ='".$t['area']."' ORDER BY recieved DESC LIMIT 0,".$lim);
+
         while ($msg=mysql_fetch_assoc($msgQ))
         {
             $ret[]=$msg;
@@ -150,5 +151,6 @@ function areasSendEmail($_Email, $_Subject, $text){
 
 	return mail($_Email, $_Subject, $text, "From: \"vFido\"<noreply@dflab.net>\nReturn-path: <df@dflab.net>");
 }
+
 
 ?>
