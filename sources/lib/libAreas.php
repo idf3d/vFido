@@ -20,7 +20,15 @@ function areasGetList()
 
 function areasGetLastThreads($areaname,$lim)
 {
-    $q=mysql_query("SELECT * FROM threads WHERE area = '".addslashes($areaname)."' ORDER BY lastupdate DESC LIMIT 0,".(int)$lim);
+   
+    if ($areaname=="" || $areaname=='NETMAIL')
+        $q=mysql_query("SELECT threads.* FROM threads,messages WHERE threads.area = '' AND messages.thread=threads.thread
+                                    AND (messages.fromaddr = '".$_SESSION['ftnAddress']."' OR messages.toaddr='".$_SESSION['ftnAddress']."')
+                                    AND (messages.fromname='".$_SESSION['ftnName']."' OR messages.toname='".$_SESSION['ftnName']."')
+                                    GROUP BY threads.thread
+                                    ORDER BY lastupdate DESC LIMIT 0,".(int)$lim);   
+    else
+        $q=mysql_query("SELECT * FROM threads WHERE area = '".addslashes($areaname)."' ORDER BY lastupdate DESC LIMIT 0,".(int)$lim);
 
     $ret=array();
 
