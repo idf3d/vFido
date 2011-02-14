@@ -1,5 +1,7 @@
 body{
    font: 62.5% "Trebuchet MS", sans-serif;
+   padding:0px;
+   margin:0px;
 }
 
 table {
@@ -14,9 +16,18 @@ table {
    border-collapse: collapse;
 }
 
-.header {
-   margin-top: 2em;
+.head {
+width:650px;
+height:95px;
+background-image:url("../img/panel.png");
 }
+
+.head img
+{
+margin-left: 10px;
+margin-top:5px;
+}
+
 #dialog_link {
    padding: .4em 1em .4em 20px;
    text-decoration: none;

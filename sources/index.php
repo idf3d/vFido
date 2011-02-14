@@ -14,6 +14,7 @@ include ('./lib/libAreas.php');
 include ('./lib/libftn.php');
 include ('./lib/libauth.php');
 include ('./lib/libstat.php');
+include ('./lib/libhtml.php');
 
 dbPrepare();
 

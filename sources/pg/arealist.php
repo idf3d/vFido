@@ -30,8 +30,9 @@ if (!defined('vFIDO_RUN'))
     <body>
         <?php
             $t=areasGetList();
+            htmlPageHeader('list');
         ?>
-        <h2 class="header">Эхоконференции</h2>
+        <h2>Эхоконференции</h2>
 		<div id="accordion">
                     <div id="my">
 				<h3><a href="<?php echo vFIDO_URL;?>?mode=showmy">Адресованные мне письма</a></h3>

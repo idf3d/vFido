@@ -21,7 +21,11 @@ $wl=isset($_GET['wl'])?$_GET['wl']:'n';
 </head>
 <body>
 <?php
-   $pg=isset($_GET['pg'])?$_GET['pg']:''; // получаем идентификатор страницы.
+
+    $pg=isset($_GET['pg'])?$_GET['pg']:''; // получаем идентификатор страницы.
+
+    htmlPageHeader($pg); // показываем красивую шапку
+   
    switch ($pg) {
       case 'fido': 
          printAboutFido();
@@ -36,14 +40,13 @@ $wl=isset($_GET['wl'])?$_GET['wl']:'n';
          printMainWelcome();
       break;
    }
-   printNavigation();
 ?>
 </body>
 </html>
 <?php
 
 function printMainWelcome(){
-?><h2 class="header">Добро пожаловать! (vFido v.0.2.92)</h2>
+?><h2>Добро пожаловать! (vFido v.0.2.92)</h2>
 <div style="font: 13px;">
 В настоящее время программа находится в тестовом режиме и подвергается беспрестанным улучшениям.
 <p>
@@ -61,19 +64,8 @@ function printMainWelcome(){
 <?php
 }
 
-function printNavigation(){
-?><div style="font: 13px; ">
-<b>Навигация:</b><br />
-→ <a href="<?php echo vFIDO_URL;?>?mode=list">Список конференций</a><br />
-→ <a href="<?php echo vFIDO_URL;?>?pg=fido">Что такое Фидо?</a><br />
-→ <a href="<?php echo vFIDO_URL;?>?pg=app">О программе vFido</a><br />
-→ <a href="<?php echo vFIDO_URL;?>?pg=stat">Статистика vFido</a><br />
-</div>
-<?php
-}
-
 function printAboutFido(){
-?><h2 class="header">FidoNet</h2>
+?><h2>FidoNet</h2>
 Фидонет является любительской сетью, это хобби для любого её участника.
 Фидошники тратят время и используют свои возможности для того, чтобы Сеть
 работала на благо всех её пользователей. Сеть обеспечивает пользователям
@@ -87,7 +79,7 @@ function printAboutFido(){
 }
 
 function printAboutApp(){
-?><h2 class="header">О программе vFido</h2>
+?><h2>О программе vFido</h2>
 Программа vFido является так называемым гейтом или WebBBS: она обеспечивает пользователям
 сайта «ВКонтакте», принадлежащего к Сети Интернет, отправлять и получать почту в другой
 сети (в Фидонете), не являясь её непосредственными зарегистрированными пользователями.
@@ -109,7 +101,7 @@ function printAboutApp(){
 
 function printStat(){
     $sGlob=statGetStat();
-?><h2 class="header">Статистика приложения</h2>
+?><h2>Статистика приложения</h2>
 
 Количество пользователей за сегодня: <b><?php echo $sGlob['users']; ?></b><br/>
 За сегодня прочитано сообщений: <b><?php echo $sGlob['rds']; ?></b><br />
