@@ -5,7 +5,6 @@
 
 session_start();
 header("Content-type: text/html; charset=utf-8");
-header('P3P: CP="NOI ADM DEV PSAi COM NAV OUR OTRo STP IND DEM"');
 
 define('vFIDO_RUN',1);
 include ('./cf.php'); //config file

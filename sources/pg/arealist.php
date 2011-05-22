@@ -38,7 +38,7 @@ if (!defined('vFIDO_RUN'))
 				<h3><a href="<?php echo vFIDO_URL;?>?mode=showmy">Адресованные мне письма</a></h3>
                     </div>
                     <div>
-                        <h3><a href="#">Мои эхоконференции</a></h3>
+                        <h3><a href="#">Эхоконференции</a></h3>
                         <div>
                             <?php
                              foreach ($t as $v)
@@ -55,7 +55,7 @@ if (!defined('vFIDO_RUN'))
 	$(function(){
 
 				// Accordion
-				$("#accordion").accordion({ header: "h3",active: false});
+				$("#accordion").accordion({ header: "h3",active: 1});
                                $("#my").click(function() {  document.location="<?php echo vFIDO_URL;?>?mode=showmy";});
 
 

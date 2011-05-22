@@ -75,11 +75,21 @@ if (isset($_GET['replyto'])) {
                 <tr><td><b>Тема:</b></td><td> <input type="text" name="msgsubj" value="<?php echo $msgsubj ?>"></td></tr>
                 </table>
                 <textarea cols="60" rows="10" name="msgtxt"><?php echo $msgtext ?></textarea>
-                <br />
+                </div>
+                <center>
                 <input type="submit" value="Отправить">
-                <!-- <input type="button" value="Отменить" onclick="document.location.href='<?php echo vFIDO_URL;?>?mode=list';"> -->
-                <input type="hidden" name="snd" value="1">
+                <?php
+                if ($rpl==""){?>
+                <input type="button" value="Отменить" onclick="document.location.href='<?php echo vFIDO_URL;?>?mode=list';">
+                <?php } ?>
+                <input type="hidden" name="snd" value="1"></center>
                 </form><?php } ?>
+                        
+                        <div class="solidborder" style="font-size: 13px;text-align: left;margin: 10px;"><b><center>Уважаемый пользователь!</center></b>
+                Просим не отправлять пустых сообщений, а так же сообщений не содержащих смысловой нагрузки.<br />
+                Просим соблюдать правила приличия и не использовать ненормативную лексику.<br /><br />
+                <div style="text-align: right;">С уважением, <br />Администрация приложения.</div>
+                        
     </body>
 </html>
 

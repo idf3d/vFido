@@ -6,7 +6,7 @@
 
 function areasGetList()
 {
-    $q=mysql_query("SELECT * FROM areas WHERE messages>0 ORDER BY recieved DESC");
+    $q=mysql_query("SELECT * FROM areas WHERE messages>0 ORDER BY area ASC");
 
     $ret=array();
 
