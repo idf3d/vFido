@@ -33,7 +33,7 @@ if (!defined('vFIDO_RUN'))
             $t=aFixGetCurrUserEchoList();
             htmlPageHeader('list');
         ?>
-        <!-- h2>Сообщения</h2 --><br /><br />  
+        <h2>Сообщения</h2>
 		<div id="accordion">
                     <div id="netmail">
 		<h3><a href="<?php echo vFIDO_URL;?>?mode=area&name=NETMAIL">Личные сообщения (NETMAIL)</a></h3>
