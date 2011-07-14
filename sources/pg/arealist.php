@@ -29,17 +29,23 @@ if (!defined('vFIDO_RUN'))
 </head>
     <body>
         <?php
-            $t=areasGetList();
+            //$t=areasGetList();
+            $t=aFixGetCurrUserEchoList();
             htmlPageHeader('list');
         ?>
-        <h2>Эхоконференции</h2>
+        <!-- h2>Сообщения</h2 --><br /><br />  
 		<div id="accordion">
+                    <div id="netmail">
+		<h3><a href="<?php echo vFIDO_URL;?>?mode=area&name=NETMAIL">Личные сообщения (NETMAIL)</a></h3>
+                    </div>
+
                     <div id="my">
-				<h3><a href="<?php echo vFIDO_URL;?>?mode=showmy">Адресованные мне письма</a></h3>
+		<h3><a href="<?php echo vFIDO_URL;?>?mode=showmy">Адресованные мне письма</a></h3>
                     </div>
                     <div>
-                        <h3><a href="#">Эхоконференции</a></h3>
+                        <h3><a href="#">Мои эхоконференции</a></h3>
                         <div>
+                            <div style="float:right"> <a href="<?php echo vFIDO_URL;?>?mode=arealst">Изменить список</a></div>
                             <?php
                              foreach ($t as $v)
                                         {
@@ -52,13 +58,11 @@ if (!defined('vFIDO_RUN'))
                     </div>
 		</div>
         <script type="text/javascript">
-	$(function(){
-
-				// Accordion
-				$("#accordion").accordion({ header: "h3",active: 1});
-                               $("#my").click(function() {  document.location="<?php echo vFIDO_URL;?>?mode=showmy";});
-
-
+        $(function(){
+	// Accordion
+	$("#accordion").accordion({ header: "h3",active: 2});
+                $("#netmail").click(function() {  document.location="<?php echo vFIDO_URL;?>?mode=area&name=NETMAIL";});
+                $("#my").click(function() {  document.location="<?php echo vFIDO_URL;?>?mode=showmy";});
         });
         </script>
     </body>

@@ -38,6 +38,7 @@ function auth() // авторизация
 	  $uinf['lastname']=vFido_localRun_lastName;
 	  $_SESSION['ftnName']=nameToFTN($uinf['firstname'].' '.$uinf['lastname']);
           $_SESSION['ftnAddress']='2:5083/86.400';
+          // $_SESSION['ftnAddress']='2:5083/86';
           $_SESSION['uinf']=$uinf;
 	  return true;
 	}

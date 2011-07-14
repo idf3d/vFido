@@ -25,6 +25,7 @@ function areasGetLastThreads($areaname,$lim)
         $q=mysql_query("SELECT threads.* FROM threads,messages WHERE threads.area = '' AND messages.thread=threads.thread
                                     AND (messages.fromaddr = '".$_SESSION['ftnAddress']."' OR messages.toaddr='".$_SESSION['ftnAddress']."')
                                     AND (messages.fromname='".$_SESSION['ftnName']."' OR messages.toname='".$_SESSION['ftnName']."')
+                                    AND (messages.fromname!='AreaFix' AND messages.toname!='AreaFix')
                                     GROUP BY threads.thread
                                     ORDER BY lastupdate DESC LIMIT 0,".(int)$lim);   
     else
@@ -76,13 +77,30 @@ function areasGetMyMessages()
         return $ret;
 }
 
+function __areasCheckMsgSecure($msg)
+{
+    if ($msg['area']!='')
+        return $msg; // Not NETMAIL, ok.
+    
+    if ($msg['fromaddr']!=$_SESSION['ftnAddress'] && $msg['toaddr']!=$_SESSION['ftnAddress'])
+        return array();
+    
+    if ($msg['fromname']!=$_SESSION['ftnName'] && $msg['toname']!=$_SESSION['ftnName'])
+        return array();
+    
+    if ($msg['fromname']=='AreaFix' || $msg['toname']=='AreaFix')
+        return array();
+    
+    return $msg;
+}
+
 function areasGetMessage ($id)
 {
     $id=(int)$id;
 
     $q=mysql_query("SELECT * FROM messages WHERE id=".$id);
     if ($m=mysql_fetch_assoc($q))
-        return $m;
+        return __areasCheckMsgSecure($m);
     else
         return array();
 }
@@ -94,7 +112,7 @@ function areasGetMessageByMSGid ($msgid)
     $q=mysql_query("SELECT * FROM messages WHERE msgid='".$msgid."'");
     
     if ($m=mysql_fetch_assoc($q))
-        return $m;
+        return __areasCheckMsgSecure($m);
     else
         return array();
 }
@@ -106,7 +124,7 @@ function areasGetNextMessagesInThread ($msgid)
     $ret=array();
     while ($f=mysql_fetch_assoc($q))
     {
-        $ret[]=$f;
+        $ret[]=__areasCheckMsgSecure($f);
     }
     return $ret;
 }
@@ -160,5 +178,11 @@ function areasSendEmail($_Email, $_Subject, $text){
 	return mail($_Email, $_Subject, $text, "From: \"vFido\"<noreply@dflab.net>\nReturn-path: <df@dflab.net>");
 }
 
+function areaIsExists($area)
+{
+   $q=mysql_query("SELECT * FROM areas WHERE area = '".addslashes($area)."'");
+   
+    return  (mysql_num_rows($q)>0);
+}
 
 ?>

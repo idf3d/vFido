@@ -11,6 +11,7 @@ include ('./cf.php'); //config file
 include ('./lib/libxml.php');
 include ('./lib/libDatabase.php');
 include ('./lib/libAreas.php');
+include ('./lib/libAreaFix.php');
 include ('./lib/libftn.php');
 include ('./lib/libauth.php');
 include ('./lib/libstat.php');
@@ -42,6 +43,9 @@ else
         break;
         case 'area':
             include ('./pg/showarea.php');
+        break;
+        case 'arealst':
+            include ('./pg/areaListEditor.php');
         break;
         case 'message':
             include ('./pg/showmessage.php');
