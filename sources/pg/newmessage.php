@@ -91,7 +91,14 @@ if (isset($_GET['replyto'])) {
                         ?>
                         <font color="red">Ошибка:</font> не удалось отправить сообщение.<br />Пожалуйста, убедитесь, что заполнены ВСЕ поля формы отправки сообщения.<br /><br />
                         <?php } //end of errormessage
-                    
+                    if ($rpl=="")
+                    {
+                        ?>
+                        <center>
+                        <input type="button" value="Продолжить" onclick="document.location.href='<?php echo vFIDO_URL;?>?mode=list';">
+                        </center>
+                        <?php
+                    }
                 } else
                 {
                 ?>
