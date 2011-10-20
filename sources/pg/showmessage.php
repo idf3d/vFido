@@ -25,7 +25,7 @@ if (!isset($_GET['id'])) {
                     $m=areasGetMessage($_GET['id']);
 
 ?>
-                <pre class="message"><b>От:</b> <?php echo $m['fromname'].'('.$m['fromaddr'].')'; ?> <a href="<?php echo vFIDO_URL;?>?mode=newmessage&replyto=<?php echo $m['id']; ?>">Ответить</a></pre>
+                <pre class="message"><b>От:</b> <?php echo $m['fromname'].'('.$m['fromaddr'].')'; ?> (<a href="<?php echo vFIDO_URL;?>?mode=newmessage&replyto=<?php echo $m['id']; ?>">Ответить</a>)<?php if ($m['area']!="" &&$m['area']!="NETMAIL") { ?> (<a href="<?php echo vFIDO_URL;?>?mode=newmessage&private=yes&replyto=<?php echo $m['id']; ?>">Ответить лично</a>)<?php }?></pre>
                 <pre class="message"><b>Кому:</b> <?php echo $m['toname']; ?></pre>
                 <pre class="message"><b>Дата:</b> <?php echo $m['date']; ?></pre>
                 <pre class="message"><b>Тема:</b> <?php echo $m['subject']; ?></pre>

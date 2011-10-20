@@ -17,17 +17,36 @@ if (isset($_GET['replyto'])) {
     }
 
       $area=$msg['area'];
+      
+    if (($area=="") && ($msg['toname']!=$_SESSION['ftnName']) && ($msg['toaddr']!=$_SESSION['ftnAddress']))
+    {
+        echo 'Сообщение не найдено.';
+        exit();
+    }      
+      if (isset($_GET['private'])) // ответить из эхи в нетмыл
+          $area="";
+      
       $msgto=$msg['fromname'];
+      
+      if ($area=="")
+        $msgAddrTo=$msg['fromaddr'];
+      else
+          $msgAddrTo="";
+
       $initials="";
       foreach (mb_split(" ", $msgto) as $name) {
           $initials=$initials.mb_substr($name,0,1,'utf-8');
       }
       $msgsubj=$msg['subject'];
-      $msgtext=message2textarea(split("\n",$msg['text']),$initials);
+      $msgtext="Приветствую!\n".message2textarea(split("\n",$msg['text']),$initials)."\n\nС наилучшими пожеланиями,\n ".$_SESSION['uinf']['firstname'];
       $rpl=$msg['msgid'];
 } else {
-      $area=isset($_GET['area'])?$_GET['area']:'NETMAIL';
-      $msgto='All';
+      $area=isset($_GET['area'])?$_GET['area']:'';
+      if ($area!="" && $area!='NETMAIL')
+            $msgto='All';
+      else
+          $msgto="";
+      $msgAddrTo='';
       $msgsubj='';
       $msgtext="Приветствую!\n\n\n\nС наилучшими пожеланиями,\n ".$_SESSION['uinf']['firstname'];
       $rpl='';
@@ -47,8 +66,17 @@ if (isset($_GET['replyto'])) {
                 {
                     $r=false;
 
-                    if ($area!='' && $area!='NETMAIL')
-                        $r=areasPutMSGtoOutbox($_SESSION['ftnName'],$_POST['msgto'],$_POST['msgsubj'],$_POST['msgtxt'],$_SESSION['ftnAddress'],$area,'','',$rpl);
+                    $toaddr="";
+                    if ($area=='NETMAIL' || $area=="")
+                    {
+                        $area="";
+                        if (isset ($_POST['msgtoaddr']))
+                            $toaddr=$_POST['msgtoaddr'];
+                        else
+                            $toaddr="";
+                    }
+                        
+                        $r=areasPutMSGtoOutbox($_SESSION['ftnName'],$_POST['msgto'],$_POST['msgsubj'],$_POST['msgtxt'],$_SESSION['ftnAddress'],$area,$toaddr,'',$rpl);
 
                     if ($r)
                     {// sendmessage
@@ -71,7 +99,21 @@ if (isset($_GET['replyto'])) {
                 <table width="400px" border="0" style="font-size:13px;">
                 <tr><td><b>Конференция:</b></td><td> <?php echo $area; ?> </td></tr>
                 <tr><td><b>От:</b></td><td> <?php echo $_SESSION['ftnName']; ?> (<?php echo $_SESSION['ftnAddress']; ?>) </td></tr>
-                <tr><td><b>Кому:</b></td><td> <input type="text" name="msgto" value="<?php echo$msgto ?>"></td></tr>
+                <tr><td><b>Кому:</b></td><td> 
+                        <?php if (($area=='' || $area=='NETMAIL') && $msgAddrTo!="") { ?>
+                        <input type="hidden" name="msgto" value="<?php echo$msgto ?>"><?php echo$msgto ?>
+                        <?php } else { ?>
+                        <input type="text" name="msgto" value="<?php echo$msgto ?>">
+                        <?php } ?> 
+                    </td></tr>
+                <?php
+                if (($area=='' || $area=='NETMAIL') && $msgAddrTo=="")
+                {
+                ?>
+                <tr><td><b>Кому (адрес):</b></td><td> <input type="text" name="msgtoaddr" value="<?php echo$msgAddrTo ?>"></td></tr>
+                <?php } else if ($msgAddrTo!="") { ?>
+                <tr><td><b>Кому (адрес):</b></td><td><?php echo$msgAddrTo ?> <input type="hidden" name="msgtoaddr" value="<?php echo$msgAddrTo ?>"></td></tr>
+                <?php } ?>
                 <tr><td><b>Тема:</b></td><td> <input type="text" name="msgsubj" value="<?php echo $msgsubj ?>"></td></tr>
                 </table>
                 <textarea cols="60" rows="10" name="msgtxt"><?php echo $msgtext ?></textarea>

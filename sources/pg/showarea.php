@@ -33,9 +33,7 @@ $threads=areasGetLastThreads($_GET['name'],20);
 $msg=array();
 ?>
         <p><a style="float:left;" href="<?php echo vFIDO_URL;?>?mode=list">&lt;&lt; Назад, к списку конференций</a>
-            <?php if ($_GET['name']!='NETMAIL')  { ?>
         <a  style="float:right;" href="<?php echo vFIDO_URL;?>?mode=newmessage&area=<?php echo $_GET['name'] ?>">[!] Написать сообщение</a>
-        <?php } ?>
         <br />
         </p>
     <div id="multi-derevo">
