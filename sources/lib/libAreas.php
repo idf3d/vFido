@@ -171,6 +171,33 @@ function areasPutMSGtoOutbox($fromname,$toname,$subject,$text,$fromaddr,$area=''
      return true;
 }
 
+function areasApproveMessage($hash,$isApprove=false)
+{
+    $hash = addslashes($hash);
+    
+    if ($isApprove)
+    {
+        mysql_query("UPDATE outbox SET approve=1 WHERE hash='".$hash."'");
+    } else {
+        mysql_query("DELETE FROM outbox WHERE hash='".$hash."'");
+    }
+    
+    $s = mysql_query("SELECT approve FROM outbox WHERE hash='".$hash."'");
+    
+    if ($isApprove)
+    {
+        return (mysql_num_rows($s)>0);            
+    } else {
+        $f = mysql_fetch_assoc($s);
+        
+        if ($f===FALSE)
+            return false;
+        
+        return ($f['approve']=='1');            
+    }
+        
+}
+
 function areasSendApprovalEmail($mArea,$mFrom,$mTo,$mText,$mHash)
 { 
     $baseurl = 'https://'.$_SERVER['SERVER_NAME'].vFIDO_URL.'mode=approval';    
