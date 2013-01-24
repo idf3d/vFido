@@ -166,9 +166,35 @@ function areasPutMSGtoOutbox($fromname,$toname,$subject,$text,$fromaddr,$area=''
                             $area."','".$reply."',NOW(),'".$hash."',0,".$approve.")");
                             
     if ($approve==0)
-        areasSendEmail('df@dflab.net', 'vFido:new message in '.$area, 'We have unapproved message');
+        areasSendApprovalEmail($area, $fromname.' '.$fromaddr, $toname.' '.$toaddr, $text, $hash);
 
      return true;
+}
+
+function areasSendApprovalEmail($mArea,$mFrom,$mTo,$mText,$mHash)
+{ 
+    $baseurl = 'https://'.$_SERVER['SERVER_NAME'].vFIDO_URL.'mode=approval';    
+    
+    $headers  = 'From: "vFido"<noreply@dflab.net>' . "\r\n";
+    $headers .= 'Return-path: <df@dflab.net>' . "\r\n";
+    $headers .= 'Content-type: text/plain; charset=utf-8' . "\r\n";
+    
+    $text  = 'Please approve message: ' . "\r\n" . "\r\n";
+    
+    $text .= '===================================== '. "\r\n";
+    $text .= 'Area: ' . $mArea . "\r\n";
+    $text .= 'From: ' . $mFrom . "\r\n";
+    $text .= 'To: '   . $mTo . "\r\n";
+    $text .= '===================================== '. "\r\n";
+    
+    $text .= $mText . "\r\n";
+    
+    $text .= '===================================== '. "\r\n";
+    
+    $text .= $baseurl . '&approve='.$mHash. "\r\n";
+    $text .= $baseurl . '&decline='.$mHash. "\r\n";
+    
+    return mail('df@dflab.net','vFido:new message in '.$mArea,$text,$headers);
 }
 
 function areasSendEmail($_Email, $_Subject, $text){

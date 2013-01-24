@@ -28,7 +28,7 @@ if (!auth())
 statLogVisit();
 
 // main executable.
-if (isset ($_GET['mode'],$_SESSION['welcome_ok'])) // обязательно начинаем с welcome
+if (isset ($_GET['mode'],$_SESSION['welcome_ok']) || $_GET['mode']=='approval') // обязательно начинаем с welcome, исключения для премодерации
     $mode=$_GET['mode'];
 else
     $mode='welcome';
@@ -55,6 +55,9 @@ else
         break;
         case 'showmy':
             include ('./pg/showmy.php');
+        break;
+        case 'approval':
+            include ('./pg/approval.php');
         break;
         default :
             include ('./pg/welcome.php');
