@@ -184,9 +184,9 @@ function areasApproveMessage($hash,$isApprove=false)
     
     $s = mysql_query("SELECT approve FROM outbox WHERE hash='".$hash."'");
     
-    if ($isApprove)
+    if (!$isApprove)
     {
-        return (mysql_num_rows($s)>0);            
+        return (mysql_num_rows($s)==0);            
     } else {
         $f = mysql_fetch_assoc($s);
         
@@ -200,7 +200,7 @@ function areasApproveMessage($hash,$isApprove=false)
 
 function areasSendApprovalEmail($mArea,$mFrom,$mTo,$mText,$mHash)
 { 
-    $baseurl = 'https://'.$_SERVER['SERVER_NAME'].vFIDO_URL.'mode=approval';    
+    $baseurl = 'https://'.$_SERVER['SERVER_NAME'].vFIDO_URL.'?mode=approval';    
     
     $headers  = 'From: "vFido"<noreply@dflab.net>' . "\r\n";
     $headers .= 'Return-path: <df@dflab.net>' . "\r\n";
