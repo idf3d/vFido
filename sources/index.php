@@ -28,7 +28,7 @@ if (!auth())
 statLogVisit();
 
 // main executable.
-if (isset ($_GET['mode'],$_SESSION['welcome_ok']) || $_GET['mode']=='approval') // обязательно начинаем с welcome, исключения для премодерации
+if (isset ($_GET['mode']) && (isset($_SESSION['welcome_ok'])||($_GET['mode']=='approval'))) // обязательно начинаем с welcome, исключения для премодерации
     $mode=$_GET['mode'];
 else
     $mode='welcome';
