@@ -2,7 +2,6 @@
 /*    Имя проекта: vfido
  *    Тип файла: конфигурационный
  */
-define('vk_SEKRET','');
 define('vk_AUTHKEY','');
 define('vk_APIid','');
 define('vk_APIurl','');
