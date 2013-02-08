@@ -19,19 +19,19 @@ include ('./lib/libhtml.php');
 
 dbPrepare();
 
-if (!auth())
+// main executable.
+if (isset ($_GET['mode']) && (isset($_SESSION['welcome_ok'])||($_GET['mode']=='approval'))) // обязательно начинаем с welcome, исключения для премодерации
+    $mode=$_GET['mode'];
+else
+    $mode='welcome';
+
+if ((!auth()) && ($mode!='approval'))
 {
     echo '<html><body><b>Невозможно идентифицировать пользователя.</b></body></html>';
     exit();
 }
 
 statLogVisit();
-
-// main executable.
-if (isset ($_GET['mode']) && (isset($_SESSION['welcome_ok'])||($_GET['mode']=='approval'))) // обязательно начинаем с welcome, исключения для премодерации
-    $mode=$_GET['mode'];
-else
-    $mode='welcome';
 
     switch ($mode)
     {
