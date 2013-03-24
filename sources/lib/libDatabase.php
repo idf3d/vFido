@@ -7,8 +7,8 @@
 
 function dbPrepare()
 {
-    @mysql_connect(vFIDO_MYSQ_HOST, vFIDO_MYSQL_USER, vFIDO_MYSQL_PWD) or die("Couldn't connect to mysql server");
-    @mysql_select_db(vFIDO_MYSQL_DBNAME) or die("Couldn't connect to database");
+    @mysql_connect(vFIDO_MYSQ_HOST, vFIDO_MYSQL_USER, vFIDO_MYSQL_PWD) or htmlErrorPage('невозможно подключиться к базе данных',true);
+    @mysql_select_db(vFIDO_MYSQL_DBNAME) or htmlErrorPage('невозможно выбрать базу данных',true);
     
     $cs='utf8';
 
@@ -17,7 +17,7 @@ function dbPrepare()
     mysql_query("SET character_set_connection = '".$cs."'");
     mysql_query("SET CHARACTER SET ".$cs);
     mysql_query("charset ".$cs);
-    mysql_query ("set character_set='".$cs."'");
+    mysql_query("set character_set='".$cs."'");
 
 }
 

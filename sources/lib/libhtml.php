@@ -33,4 +33,30 @@ echo '</div>';
 
 }
 
+function htmlErrorPage($message, $isDie=false)
+{?>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>The page is temporarily unavailable</title>
+<style>
+body { font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body bgcolor="white" text="black">
+<table width="100%" height="100%">
+<tr>
+<td align="center" valign="middle">
+Произошла ошибка: <?php echo $message; ?><br />Пожалуйста, зайдите позже.
+</td>
+</tr>
+</table>
+</body>
+</html>
+<?php
+
+    if ($isDie) exit;
+    
+}
+
 ?>
